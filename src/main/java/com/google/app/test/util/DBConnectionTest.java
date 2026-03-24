@@ -2,6 +2,7 @@ package com.google.app.test.util;
 
 import java.sql.Connection;
 
+import com.google.app.countries.CountriesDAO;
 import com.google.app.departments.DepartmentDAO;
 import com.google.app.util.DBConnection;
 
@@ -23,13 +24,22 @@ public class DBConnectionTest {
 //			e.printStackTrace();
 //		}
 
-		DepartmentDAO dao = new DepartmentDAO();
+//		DepartmentDAO dao = new DepartmentDAO();
+//		try {
+//			dao.list();
+//		} catch (Exception e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
+		
+		CountriesDAO countriesDAO = new CountriesDAO();
 		try {
-			dao.list();
+			countriesDAO.list();
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		
 	}
 
 }
