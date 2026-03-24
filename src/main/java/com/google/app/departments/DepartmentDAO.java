@@ -7,9 +7,14 @@ import java.sql.ResultSet;
 import com.google.app.util.DBConnection;
 
 public class DepartmentDAO {
+	private DBConnection connection;
+	
+	public DepartmentDAO() {
+		this.connection = new DBConnection();
+	}
+	
 	public void list() throws Exception {
 		// 1. DB 연결
-		DBConnection connection = new DBConnection();
 		Connection con = connection.getConnection();
 		
 		// 2. 쿼리문 작성
@@ -41,7 +46,7 @@ public class DepartmentDAO {
 	}
 	
 	public void detail(int departmentID) throws Exception {
-		DBConnection connection = new DBConnection();
+		
 		Connection con = connection.getConnection();
 		
 		// 특정한 값을 찾기위해 ?로 설정
