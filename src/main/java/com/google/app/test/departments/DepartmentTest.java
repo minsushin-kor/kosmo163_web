@@ -9,7 +9,7 @@ public class DepartmentTest {
 		
 		try {
 //			dao.list();
-			dao.detail();
+			dao.detail(100);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

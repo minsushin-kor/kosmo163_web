@@ -40,4 +40,29 @@ public class CountriesDAO {
 		
 	}
 	
+	public void detail(String countryID) throws Exception {
+		DBConnection connection = new DBConnection();
+		Connection con = connection.getConnection();
+
+		// 특정한 값을 위해 ? 설정
+		String sql = "SELECT * FROM COUNTRIES WHERE COUNTRY_ID =?";
+		
+		PreparedStatement st = con.prepareStatement(sql);
+		st.setString(1, countryID);
+		
+		ResultSet rs = st.executeQuery();
+		
+		if(rs.next()) {
+			String name = rs.getString("COUNTRY_NAME");
+			System.out.println(name);
+		}
+		else {
+			System.out.println("일치하는 나라가 없다.");
+		}
+		
+		rs.close();
+		st.close();
+		con.close();
+	}
+	
 }

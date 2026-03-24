@@ -40,13 +40,17 @@ public class DepartmentDAO {
 		con.close();
 	}
 	
-	public void detail() throws Exception {
+	public void detail(int departmentID) throws Exception {
 		DBConnection connection = new DBConnection();
 		Connection con = connection.getConnection();
 		
-		String sql = "SELECT * FROM DEPARTMENTS WHERE DEPARTMENT_ID = 100";
+		// 특정한 값을 찾기위해 ?로 설정
+		String sql = "SELECT * FROM DEPARTMENTS WHERE DEPARTMENT_ID=?";
 		
 		PreparedStatement st = con.prepareStatement(sql);
+		
+		// ? 값 세팅
+		st.setInt(1, departmentID);
 		
 		ResultSet rs = st.executeQuery();
 		
