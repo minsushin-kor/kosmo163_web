@@ -9,8 +9,6 @@
 </head>
 <body>
 	<h4>부서 리스트</h4>
-	<h5>Locale A</h5>
-	<h5>Locale C</h5>
 	<div>
 		<table>
 			<thead> 
@@ -27,7 +25,7 @@
 						예시 : getName() =>> name
 			 			-->
 						<td>${d.departmentId}</td>
-						<td>${d.departmentName}</td>
+						<td><a href="/dept/detail?departmentId=${d.departmentId}">${d.departmentName}</a></td>
 					</tr> 
 				</c:forEach>
 			</tbody>

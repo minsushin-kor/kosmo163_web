@@ -7,9 +7,10 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<!-- html 주석 -->
-	<h1>Index Page SMS</h1>
-	<a href="/dept/list">부서관리</a>
-	<a href="country/list">나라관리</a>
+	<h1>DEPT Detail Page</h1>
+	<h4>${dto.departmentId}</h4>
+	<h4>${dto.departmentName}</h4>
+	<h4>${dto.managerId}</h4>
+	<h4>${dto.locationId}</h4>
 </body>
 </html>

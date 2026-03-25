@@ -21,9 +21,9 @@
 			<tbody>
 				<c:forEach items="${list}" var ="d">
 				<tr>
-					<td>$d.countryId</td>
-					<td>$d.countryName</td>
-					<td>$d.regionId</td>
+					<td>${d.countryId}</td>
+					<td>${d.countryName}</td>
+					<td>${d.regionId}</td>
 				</tr>
 				</c:forEach>
 			</tbody>
