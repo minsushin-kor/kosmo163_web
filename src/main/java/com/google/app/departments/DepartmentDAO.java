@@ -3,6 +3,7 @@ package com.google.app.departments;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.util.ArrayList;
 
 import com.google.app.util.DBConnection;
 
@@ -13,7 +14,7 @@ public class DepartmentDAO {
 		this.connection = new DBConnection();
 	}
 	
-	public void list() throws Exception {
+	public ArrayList<DepartmentDTO> list() throws Exception {
 		// 1. DB 연결
 		Connection con = connection.getConnection();
 		
@@ -30,12 +31,21 @@ public class DepartmentDAO {
 		
 		// 5. 최종 전송 및 결과 처리
 		ResultSet rs = st.executeQuery();
-		
+		ArrayList<DepartmentDTO> ar = new ArrayList<>();
 		while(rs.next()) {
+			DepartmentDTO dto = new DepartmentDTO();
+			
 			String name = rs.getString("DEPARTMENT_NAME");
 			int id = rs.getInt("DEPARTMENT_ID");
+			int mid= rs.getInt("MANAGER_ID");
+			int lid = rs.getInt("LOCATION_ID");
 			
-			System.out.println(name + " : " + id);
+			dto.setDepartmentName(name);
+			dto.setDepartmentId(id);
+			dto.setManagerId(mid);
+			dto.setLocationId(lid);
+			
+			ar.add(dto);
 		}
 		
 		// 6. 연결 해제
@@ -43,6 +53,8 @@ public class DepartmentDAO {
 		rs.close();
 		st.close();
 		con.close();
+		
+		return ar;
 	}
 	
 	public void detail(int departmentID) throws Exception {

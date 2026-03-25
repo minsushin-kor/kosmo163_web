@@ -3,12 +3,13 @@ package com.google.app.countries;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.util.ArrayList;
 
 import com.google.app.util.DBConnection;
 
 public class CountriesDAO {
 	
-	public void list() throws Exception {
+	public ArrayList<CountryDTO> list() throws Exception {
 		//1. DB 연결
 		DBConnection connection = new DBConnection();
 		Connection con = connection.getConnection();
@@ -21,16 +22,21 @@ public class CountriesDAO {
 		
 		//4. ?값을 세팅
 		
-		
 		//5. 최종 전송 및 결과 처리
 		ResultSet rs = st.executeQuery();
-		
+		ArrayList<CountryDTO> ar = new ArrayList<>();
 		while(rs.next()){
+			CountryDTO dto = new CountryDTO();
+			
 			String name = rs.getString("COUNTRY_NAME");
-			int id = rs.getInt("COUNTRY_ID");
+			String cid = rs.getString("COUNTRY_ID");
+			int rid = rs.getInt("REGION_ID");
 			
-			System.out.println(name + " : " + id);
+			dto.setCountryId(cid);
+			dto.setCountryName(name);
+			dto.setRegionId(rid);			
 			
+			ar.add(dto);
 		}
 		
 		//6. 연결 해제
@@ -38,6 +44,7 @@ public class CountriesDAO {
 		st.close();
 		con.close();
 		
+		return ar; 
 	}
 	
 	public void detail(String countryID) throws Exception {
