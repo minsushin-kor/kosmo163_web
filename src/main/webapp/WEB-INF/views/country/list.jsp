@@ -21,7 +21,7 @@
 			<tbody>
 				<c:forEach items="${list}" var ="d">
 				<tr>
-					<td>${d.countryId}</td>
+					<td><a href="/country/detail?countryId=${d.countryId}">${d.countryId}</a></td>
 					<td>${d.countryName}</td>
 					<td>${d.regionId}</td>
 				</tr>
