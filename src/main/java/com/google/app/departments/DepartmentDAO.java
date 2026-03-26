@@ -86,4 +86,23 @@ public class DepartmentDAO {
 		
 		return dto;
 	}
+	
+	public int create(DepartmentDTO departmentDTO) throws Exception {
+		Connection con = connection.getConnection();
+		String sql = """
+					INSERT INTO DEPARTMENTS (DEPARTMENT_ID, DEPARTMENT_NAME, MANAGER_ID, LOCATION_ID)
+					VALUES (DEPARTMENTS_SEQ.NEXTVAL, ?, ?, ?)""";
+		
+		PreparedStatement st = con.prepareStatement(sql);
+		st.setString(1, departmentDTO.getDepartmentName());
+		st.setInt(2, departmentDTO.getManagerId());
+		st.setInt(3, departmentDTO.getLocationId());
+		
+		int result = st.executeUpdate();
+		
+		st.close();
+		con.close();
+		
+		return result;
+	}
 }
