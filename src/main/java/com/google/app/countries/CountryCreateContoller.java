@@ -1,4 +1,4 @@
-package com.google.app.departments;
+package com.google.app.countries;
 
 import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
@@ -8,17 +8,20 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
+import com.google.app.departments.DepartmentDAO;
+import com.google.app.departments.DepartmentDTO;
+
 /**
- * Servlet implementation class DepartmentCreateController
+ * Servlet implementation class CountryCreateContoller
  */
-@WebServlet("/dept/create")
-public class DepartmentCreateController extends HttpServlet {
+@WebServlet("/country/create")
+public class CountryCreateContoller extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public DepartmentCreateController() {
+    public CountryCreateContoller() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -27,8 +30,7 @@ public class DepartmentCreateController extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		RequestDispatcher view = request.getRequestDispatcher("/WEB-INF/views/dept/create.jsp");
+		RequestDispatcher view = request.getRequestDispatcher("/WEB-INF/views/country/create.jsp");
 		view.forward(request, response);
 	}
 
@@ -37,26 +39,22 @@ public class DepartmentCreateController extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		String name = request.getParameter("departmentName");
-		String m = request.getParameter("managerId");
-		String l = request.getParameter("locationId");
+		String cid = request.getParameter("countryId");
+		String name = request.getParameter("countryName");
+		String rid = request.getParameter("regionId");
 		
-		DepartmentDTO departmentDTO = new DepartmentDTO();
-		departmentDTO.setDepartmentName(name);
-		departmentDTO.setManagerId(Integer.parseInt(m));
-		departmentDTO.setLocationId(Integer.parseInt(l));
+		CountryDTO countryDTO = new CountryDTO();
+		countryDTO.setCountryId(cid);
+		countryDTO.setCountryName(name);
+		countryDTO.setRegionId(Integer.parseInt(rid));
 		
-		DepartmentDAO departmentDAO = new DepartmentDAO();
+		CountriesDAO countriesDAO = new CountriesDAO();
+		
 		try {
-			int result = 0; //departmentDAO.create(departmentDTO);
+			int result = countriesDAO.create(countryDTO);
 			if(result > 0) {
-				response.sendRedirect("/dept/list");
+				response.sendRedirect("/country/list");
 			}
-			else {
-				RequestDispatcher view = request.getRequestDispatcher("/WEB-INF/views/dept/list.jsp");
-				view.forward(request, response);
-			}
-				
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

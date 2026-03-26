@@ -10,6 +10,9 @@
 <body>
 	<h4>나라 리스트</h4>
 	<div>
+		<a href="/country/create"> 나라 등록 페이지 </a>
+	</div>
+	<div>
 		<table>
 			<thead>
 				<tr>

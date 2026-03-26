@@ -74,4 +74,26 @@ public class CountriesDAO {
 		return dto;
 	}
 	
+	public int create(CountryDTO countryDTO) throws Exception {
+		DBConnection connection = new DBConnection();
+		Connection con = connection.getConnection();
+		
+		String sql = """
+				INSERT INTO COUNTRIES(COUNTRY_ID, COUNTRY_NAME, REGION_ID)
+				VALUES (?, ?, ?)
+				""";
+		
+		PreparedStatement st = con.prepareStatement(sql);
+		
+		st.setString(1, countryDTO.getCountryId());
+		st.setString(2, countryDTO.getCountryName());
+		st.setInt(3, countryDTO.getRegionId());
+		
+		int result = st.executeUpdate();
+		
+		st.close();
+		con.close();
+		
+		return result;
+	}
 }
