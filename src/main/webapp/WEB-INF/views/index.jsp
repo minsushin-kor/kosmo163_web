@@ -9,7 +9,6 @@
 <body>
 	<!-- html 주석 -->
 	<h1>Index Page SMS</h1>
-	<a href="/dept/list">부서관리</a>
-	<a href="country/list">나라관리</a>
+	<a href="/comm/list"> 목록 리스트 관리 </a>
 </body>
 </html>

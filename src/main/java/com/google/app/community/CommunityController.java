@@ -1,4 +1,4 @@
-package com.google.app.countries;
+package com.google.app.community;
 
 import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
@@ -7,18 +7,19 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.ArrayList;
 
 /**
- * Servlet implementation class CountryDetailController
+ * Servlet implementation class CommunityController
  */
-@WebServlet("/country/detail")
-public class CountryDetailController extends HttpServlet {
+@WebServlet("/comm/list")
+public class CommunityController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public CountryDetailController() {
+    public CommunityController() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -27,19 +28,18 @@ public class CountryDetailController extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		CommunityDAO dao = new CommunityDAO();
 		
-		CountriesDAO countriesDAO = new CountriesDAO();
-		String id = request.getParameter("countryId");  
-				
 		try {
-			CountryDTO countryDTO = countriesDAO.detail(id); 
-			request.setAttribute("dto", countryDTO);
+			ArrayList<CommunityDTO> ar = dao.list();
+			request.setAttribute("list", ar);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		
-		RequestDispatcher view = request.getRequestDispatcher("/WEB-INF/views/country/detail.jsp");
+		
+		RequestDispatcher view = request.getRequestDispatcher("/WEB-INF/views/community/list.jsp");
 		view.forward(request, response);
 	}
 
