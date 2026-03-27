@@ -13,6 +13,7 @@
 	<h4>${dto.managerId}</h4>
 	<h4>${dto.locationId}</h4>
 	
+	<a href="/dept/update?departmentId=${dto.departmentId}">수정</a>
 	<a href="/dept/delete?departmentId=${dto.departmentId}">삭제</a>
 
 	<form action="./delete" method="get">

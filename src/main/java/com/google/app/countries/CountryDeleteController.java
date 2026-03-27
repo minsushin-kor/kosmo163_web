@@ -1,4 +1,4 @@
-package com.google.app.departments;
+package com.google.app.countries;
 
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
@@ -8,16 +8,16 @@ import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 /**
- * Servlet implementation class DepartmentDeleteController
+ * Servlet implementation class CountryDeleteController
  */
-@WebServlet("/dept/delete")
-public class DepartmentDeleteController extends HttpServlet {
+@WebServlet("/country/delete")
+public class CountryDeleteController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public DepartmentDeleteController() {
+    public CountryDeleteController() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -26,21 +26,21 @@ public class DepartmentDeleteController extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// get 방식으로 할 경우 주소만 알면 삭제할 수 있어 삭제 메서드 호출은 post 방식으로 권장
-		String id = request.getParameter("departmentId");
-		DepartmentDTO departmentDTO = new DepartmentDTO();
-		departmentDTO.setDepartmentId(Integer.parseInt(id));
+		// TODO Auto-generated method stub
 		
-		DepartmentDAO departmentDAO = new DepartmentDAO();
+		String id = request.getParameter("countryID");
+		CountryDTO countryDTO = new CountryDTO();
+		CountriesDAO countriesDAO = new CountriesDAO();
+		
+		
 		try {
-			int result = departmentDAO.delete(departmentDTO);
-			
-			if(result>0) {
+			int result = countriesDAO.delete(countryDTO);
+			if(result > 0) {
 				response.sendRedirect("./list");
+				System.out.println(result);
 			}
-			else{
-				// 리다이렉트 시 파라미터를 보내는 방법
-				response.sendRedirect("detail?departmentId="+id);
+			else {
+				response.sendRedirect("detail?countryID="+id);
 			}
 			
 		} catch (Exception e) {
@@ -54,7 +54,9 @@ public class DepartmentDeleteController extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		doGet(request, response);
+		
+		
+		
 	}
 
 }

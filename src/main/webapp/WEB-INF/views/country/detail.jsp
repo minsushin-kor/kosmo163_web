@@ -11,5 +11,12 @@
 	<h4>${dto.countryId} </h4>
 	<h4>${dto.countryName} </h4>
 	<h4>${dto.regionId} </h4>
+	
+	<a href="/country/delete?countryId=${dto.countryId}">삭제</a>
+
+	<form action="./delete" method="get">
+		<input type="hidden" name="countryId" value ="${dto.countryId}">
+		<button>DELETE</button>
+	</form>
 </body>
 </html>

@@ -96,4 +96,22 @@ public class CountriesDAO {
 		
 		return result;
 	}
+	
+	public int delete(CountryDTO countryDTO) throws Exception{
+		DBConnection connection = new DBConnection();
+		Connection con = connection.getConnection();
+		
+		String sql = "DELETE COUNTRIES WHERE COUNTRY_ID=?";
+		
+		PreparedStatement st = con.prepareStatement(sql);
+		
+		st.setString(1, countryDTO.getCountryId());
+		
+		int result = st.executeUpdate();
+		
+		st.close();
+		con.close();
+		
+		return result;
+	}
 }
