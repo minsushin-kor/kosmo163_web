@@ -12,5 +12,13 @@
 	<h4>${dto.departmentName}</h4>
 	<h4>${dto.managerId}</h4>
 	<h4>${dto.locationId}</h4>
+	
+	<a href="/dept/delete?departmentId=${dto.departmentId}">삭제</a>
+
+	<form action="./delete" method="get">
+		<input type="hidden" name="departmentId" value ="${dto.departmentId}">
+		<button>DELETE</button>
+	</form>
+	
 </body>
 </html>

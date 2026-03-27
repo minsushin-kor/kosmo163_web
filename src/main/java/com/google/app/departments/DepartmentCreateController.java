@@ -48,7 +48,7 @@ public class DepartmentCreateController extends HttpServlet {
 		
 		DepartmentDAO departmentDAO = new DepartmentDAO();
 		try {
-			int result = 0; //departmentDAO.create(departmentDTO);
+			int result = departmentDAO.create(departmentDTO);
 			if(result > 0) {
 				response.sendRedirect("/dept/list");
 			}

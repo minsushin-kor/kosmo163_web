@@ -105,4 +105,21 @@ public class DepartmentDAO {
 		
 		return result;
 	}
+	
+	public int delete(DepartmentDTO departmentDTO) throws Exception {
+		Connection con = connection.getConnection();
+		
+		String sql = "DELETE DEPARTMENTS WHERE DEPARTMENT_ID=?";
+		
+		PreparedStatement st = con.prepareStatement(sql);
+		
+		st.setInt(1, departmentDTO.getDepartmentId());
+		
+		int result = st.executeUpdate();
+		
+		st.close();
+		con.close();
+		
+		return result;
+	}
 }
