@@ -20,7 +20,7 @@
     		<tbody>
          		<c:forEach items="${list}" var="d">
          			<tr>
-             		<td>${d.num}</td>
+         			<td><a href = "./detail?num=${d.num}">${d.num}</a></td>
              		<td>${d.title}</td>
          			</tr>   
 				</c:forEach>
@@ -28,7 +28,7 @@
 		</table>
 	</div>
 	<div>
-		<button>새글 등록</button>
+		<a href="./create">새 메모 작성</a>
 	</div>
 </body>
 </html>
