@@ -53,11 +53,13 @@ public class CommunityUpdateController extends HttpServlet {
 		
 		CommunityDTO communityDTO = new CommunityDTO();
 		
+		String num = request.getParameter("num");
 		String title = request.getParameter("title");
 		String name = request.getParameter("name");
 		String contents = request.getParameter("contents");
 		String star = request.getParameter("star");
 				
+		communityDTO.setNum(Long.parseLong(num));
 		communityDTO.setTitle(title);
 		communityDTO.setName(name);
 		communityDTO.setContents(contents);
@@ -70,8 +72,9 @@ public class CommunityUpdateController extends HttpServlet {
 			
 			if(result>0) {
 				response.sendRedirect("./list");
+				System.out.println("수정되었습니다.");
 			}else {
-				
+				System.out.println("실패");
 			}
 			
 		} catch (Exception e) {
