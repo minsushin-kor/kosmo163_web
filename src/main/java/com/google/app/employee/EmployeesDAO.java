@@ -68,5 +68,33 @@ public class EmployeesDAO {
 		con.close();
 	}
 	
+	// 로그인을 검증하는 메서드
+	public EmployeeDTO login(EmployeeDTO employeeDTO) throws Exception {
+		Connection con = connection.getConnection();
+		String sql = """
+					SELECT * FROM EMPLOYEES
+					WHERE EMPLOYEE_ID=? AND PASSWORD=?
+				""";
+		
+		PreparedStatement st = con.prepareStatement(sql);
+		
+		st.setInt(1, employeeDTO.getEmployeeId());
+		st.setString(2, employeeDTO.getPassword());
+		
+		ResultSet rs = st.executeQuery();
+		
+		if(rs.next()) {
+			employeeDTO.setFirstName(rs.getString("FIRST_NAME"));
+			employeeDTO.setLastName(rs.getString("LAST_NAME"));
+			employeeDTO.setHireDate(rs.getDate("HIRE_DATE"));
+			employeeDTO.setSalary(rs.getDouble("SALARY"));
+			employeeDTO.setDepartmentId(rs.getInt("DEPARTMENT_ID"));
+			
+			return employeeDTO;
+		}
+				
+		return null;
+		
+	}
 	
 }
